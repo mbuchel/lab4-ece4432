@@ -15,6 +15,12 @@ int main(int argc, char **argv)
     com.start(argv[1]);
 
     while (1) {
-        std::cout << com.recv_msg() << "\n";
+        com.recv_msg();
+
+        if (com.recv_msg() == -1)
+            continue;
+
+        if (strcmp(com.recv_buff, "Arduino is ready, please input mode\n"))
+            com.send_msg("M");
     }
 }
