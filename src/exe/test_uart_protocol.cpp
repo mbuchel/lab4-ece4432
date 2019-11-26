@@ -8,6 +8,9 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+const std::string setup = "Please enter operation mode";
+const std::string master = "You selected operation mode: M";
+
 int main(int argc, char **argv)
 {
     uart com;
@@ -20,7 +23,9 @@ int main(int argc, char **argv)
         if (com.recv_msg() == -1)
             continue;
 
-        if (strcmp(com.recv_buff, "Please enter operation mode"))
+        if (strcmp(com.recv_buff, setup.c_str()))
             com.send_msg("M");
+        else if (strcmp(com.recv_buff, master.c_str()))
+            break;
     }
 }
