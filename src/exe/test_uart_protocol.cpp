@@ -8,9 +8,9 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-const std::string setup = "Please enter operation mode\n";
-const std::string master = "You selected operation mode: M\n";
-const std::string command_choice = "Please send me a command!\n";
+const std::string setup = "Please enter operation mode";
+const std::string master = "You selected operation mode: M";
+const std::string command_choice = "Please send me a command!";
 
 void send_message(uart &com)
 {
