@@ -32,9 +32,9 @@ int main(int argc, char **argv)
         if (com.recv_msg() == -1)
             continue;
 
-        if (strcmp(com.recv_buff, setup.c_str()) == 0)
+        if (strncmp(com.recv_buff, setup.c_str(), setup.size()) == 0)
             com.send_msg("M");
-        else if (strcmp(com.recv_buff, master.c_str()) == 0)
+        else if (strncmp(com.recv_buff, master.c_str(), master.size()) == 0)
             break;
     }
 
@@ -44,7 +44,7 @@ int main(int argc, char **argv)
         if (com.recv_msg() == -1)
             continue;
 
-        if (strcmp(com.recv_buff, command_choice.c_str()) == 0)
+        if (strncmp(com.recv_buff, command_choice.c_str(), command_choice.size()) == 0)
             send_message(com);
     }
 }
