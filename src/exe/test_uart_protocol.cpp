@@ -10,6 +10,15 @@
 
 const std::string setup = "Please enter operation mode\n";
 const std::string master = "You selected operation mode: M\n";
+const std::string command_choice = "Please send me a command!\n";
+
+void send_message(uart &com)
+{
+    std::string command;
+    std::cout << "Input command to send: ";
+    std::getline(std::cin, command);
+    com.send_msg(command);
+}
 
 int main(int argc, char **argv)
 {
@@ -27,5 +36,15 @@ int main(int argc, char **argv)
             com.send_msg("M");
         else if (strcmp(com.recv_buff, master.c_str()) == 0)
             break;
+    }
+
+    while (1) {
+        com.recv_msg();
+
+        if (com.recv_msg() == -1)
+            continue;
+
+        if (strcmp(com.recv_buff, command_choice.c_str()) == 0)
+            send_message(com);
     }
 }
