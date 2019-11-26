@@ -20,7 +20,7 @@ int main(int argc, char **argv)
         if (com.recv_msg() == -1)
             continue;
 
-        if (strcmp(com.recv_buff, "Arduino is ready, please input mode\n"))
+        if (strcmp(com.recv_buff, "Arduino is ready, please input mode"))
             com.send_msg("M");
     }
 }

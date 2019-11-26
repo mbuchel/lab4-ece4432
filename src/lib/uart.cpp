@@ -41,7 +41,8 @@ ssize_t uart::recv_msg()
     else
         ret = -1;
 
-    std::cerr << "Receive: " << recv_buff;
+    if (ret)
+        std::cerr << "Receive: " << recv_buff;
 
     return ret;
 }
