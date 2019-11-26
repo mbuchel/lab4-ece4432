@@ -4,7 +4,6 @@
 #include <uart.h>
 
 #include <string.h>
-
 #include <stdio.h>
 #include <errno.h>
 #include <termios.h>
@@ -12,6 +11,8 @@
 #include <poll.h>
 #include <stdlib.h>
 #include <unistd.h>
+
+#include <iostream>
 
 /*
  * uart - default constructor so you do not need to clear the buffer
@@ -40,6 +41,8 @@ ssize_t uart::recv_msg()
     else
         ret = -1;
 
+    std::cerr << "Receive: " << recv_buff << "\n";
+
     return ret;
 }
 
@@ -49,6 +52,7 @@ ssize_t uart::recv_msg()
  */
 ssize_t uart::send_msg(const std::string &msg)
 {
+    std::cerr << "Send: " << msg << "\n";
     return write(fd, msg.c_str(), msg.size());
 }
 
@@ -95,7 +99,7 @@ void uart::start(const char *str)
     tty.c_lflag = ICANON;
     tty.c_iflag = IGNCR;
     tty.c_oflag = OPOST | ONLCR;
-#if 1
+#if 0
     tty.c_cflag = 0x54B8FCB8;
 #else
     tty.c_cflag |= CREAD | CS8;
