@@ -77,4 +77,4 @@ $(BUILD)/exe/%.cpp.o: src/exe/%.cpp
 
 %: $(BUILD)/exe/%.cpp.o
 	echo "[LD] Linking $@"
-	$(LD) $(LIB_OBJ) $(LDFLAGS) $^ -o bin/$@
+	$(LD) $(LIB_OBJ) $^ $(LDFLAGS) -o bin/$@
