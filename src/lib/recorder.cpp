@@ -7,6 +7,7 @@
 #include <cassert>
 #include <cstddef>
 
+portaudio::AutoSystem a;
 portaudio::System &sys = portaudio::System::instance();
 
 recorder::recorder(int BEEP_SECONDS,
