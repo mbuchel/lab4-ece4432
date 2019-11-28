@@ -12,6 +12,7 @@ int main()
         rec.save_file("audio.raw");
         rec.close();
         system("sox -t raw -r 16000 -b 16 -c 1 -L -e signed-integer audio.raw audio.wav");
+        system("deepspeech --model models/output_graph.pbmm --alphabet models/alphabet.txt --lm models/lm.binary --trie models/trie --audio audio.wav > transcript 2> log");
     } catch (...) {
 
     }
