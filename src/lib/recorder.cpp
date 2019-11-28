@@ -62,7 +62,7 @@ void recorder::record()
 {
     char wait;
    
-    beep();
+    //beep();
 
     portaudio::DirectionSpecificStreamParameters
         in_params(sys.deviceByIndex(input),
